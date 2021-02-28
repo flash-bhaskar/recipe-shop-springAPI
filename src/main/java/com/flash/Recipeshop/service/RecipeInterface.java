@@ -1,6 +1,7 @@
 package com.flash.Recipeshop.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.flash.Recipeshop.entity.Recipe;
 
@@ -10,6 +11,10 @@ public interface RecipeInterface {
 
 	List<Recipe> getAllRecipe();
 
-	Recipe getRecipeById(int id);
+	Optional<Recipe> getRecipeById(int id);
+	
+	void deleteRecipe(int id);
+	
+	Recipe updateRecipe(int id, Recipe recipe);
 
 }

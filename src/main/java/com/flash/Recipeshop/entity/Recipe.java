@@ -1,44 +1,49 @@
 package com.flash.Recipeshop.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-@Entity	
+@Entity
+@Table(name = "recipes")
 public class Recipe {
-	
+
 	@Id
 	@GeneratedValue
-	private Long recipeId;
-	
+	private int recipeId;
+
 	private String name;
-	
+
 	private String description;
-	
+
 	private String imagePath;
-	
-	@OneToMany(mappedBy="recipe")
-	private Ingredient ingre;
-	
+
+	@OneToMany(mappedBy = "recipe", cascade=CascadeType.ALL)
+	private List<Ingredient> ingredients;
+
 	public Recipe() {
-		
+
 	}
 
-	public Recipe(Long recipeId, String name, String description, String imagePath, Ingredient ingre) {
+	public Recipe(int recipeId, String name, String description, String imagePath, List<Ingredient> ingredients) {
 		super();
 		this.recipeId = recipeId;
 		this.name = name;
 		this.description = description;
 		this.imagePath = imagePath;
-		this.ingre = ingre;
+		this.ingredients = ingredients;
 	}
 
-	public Long getRecipeId() {
+	public int getRecipeId() {
 		return recipeId;
 	}
 
-	public void setRecipeId(Long recipeId) {
+	public void setRecipeId(int recipeId) {
 		this.recipeId = recipeId;
 	}
 
@@ -66,20 +71,12 @@ public class Recipe {
 		this.imagePath = imagePath;
 	}
 
-	public Ingredient getIngre() {
-		return ingre;
+	public List<Ingredient> getIngredients() {
+		return ingredients;
 	}
 
-	public void setIngre(Ingredient ingre) {
-		this.ingre = ingre;
+	public void setIngredients(List<Ingredient> ingredients) {
+		this.ingredients = ingredients;
 	}
-
-	@Override
-	public String toString() {
-		return "Recipe [recipeId=" + recipeId + ", name=" + name + ", description=" + description + ", imagePath="
-				+ imagePath + ", ingre=" + ingre + "]";
-	}
-
-	
 
 }
