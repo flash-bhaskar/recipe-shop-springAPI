@@ -3,11 +3,14 @@ package com.flash.Recipeshop.entity;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "recipes")
@@ -17,10 +20,18 @@ public class Recipe {
 	@GeneratedValue
 	private int recipeId;
 
+	@NotEmpty(message = "Username is Mandatory field. Please provide username")
+	@Size(min=2, message="Recipe name should be minimum of 2 charchters")
+	@Column(unique=false, nullable=false)
 	private String name;
 
+	@NotEmpty(message = "Recipe Description is Mandatory field. Please provide recipe description")
+	@Size(min=10, message="Recipe name should be minimum of 10 charchters")
+	@Column(nullable=false)
 	private String description;
 
+	@NotEmpty(message = "Image is Mandatory field. Please provide imagepath")
+	@Column(nullable=false)
 	private String imagePath;
 
 	@OneToMany(mappedBy = "recipe", cascade=CascadeType.ALL)

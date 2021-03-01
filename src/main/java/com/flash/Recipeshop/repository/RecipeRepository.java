@@ -8,4 +8,5 @@ import com.flash.Recipeshop.entity.Recipe;
 @Repository
 public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
 
+	Recipe findByName(String name);
 }

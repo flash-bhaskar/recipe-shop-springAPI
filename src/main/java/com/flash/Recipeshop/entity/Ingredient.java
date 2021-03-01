@@ -1,5 +1,6 @@
 package com.flash.Recipeshop.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,8 +18,10 @@ public class Ingredient {
 	@GeneratedValue
 	private int ingredientId;
 
+	@Column(nullable=false)
 	private String name;
 
+	@Column(nullable=false)
 	private Long amount;
 
 	@ManyToOne(fetch = FetchType.LAZY)
